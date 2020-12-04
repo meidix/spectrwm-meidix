@@ -30,6 +30,13 @@ lang_layout() {
 	echo -e "$layout"
 }
 
+## Battery Status
+battery() {
+	life="$(acpi | cut -b 11-27)"
+
+	echo -e "$life "
+
+}
 
 
 SLEEP_SEC=3
@@ -40,6 +47,6 @@ SLEEP_SEC=3
 # So I would love to add more functions to this script but it makes the 
 # echo output too long to display correctly.
 while :; do
-	echo "+@fg=1; +@fn=1;💻+@fn=0; $(cpu) +@fg=0; | +@fg=2; +@fn=1;💾+@fn=0; $(mem) +@fg=0; | +@fg=3; +@fn=1;💿+@fn=0; $(hdd) +@fg=0; | +@fg=4; +@fn=1;🔈+@fn=0;$(lang_layout)   | "
+	echo "+@fg=1; +@fn=1;💻+@fn=0;  $(battery) +@fg=0; |  +@fg=1; +@fn=1;💻+@fn=0; $(cpu) +@fg=0; | +@fg=2; +@fn=1;💾+@fn=0; $(mem) +@fg=0; | +@fg=3; +@fn=1;💿+@fn=0; $(hdd) +@fg=0; | +@fg=4; +@fn=1;🔈+@fn=0;$(lang_layout)   | "
 	sleep $SLEEP_SEC
 done
